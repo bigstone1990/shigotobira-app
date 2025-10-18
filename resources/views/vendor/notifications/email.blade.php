@@ -1,4 +1,4 @@
-<x-mail::message>
+<x-mail::message :homeUrl="$homeUrl">
 {{-- Greeting --}}
 @if (! empty($greeting))
 # {{ $greeting }}
