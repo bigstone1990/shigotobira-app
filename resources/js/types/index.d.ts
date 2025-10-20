@@ -3,6 +3,7 @@ import type { Config } from 'ziggy-js';
 
 export interface Auth {
     user: User;
+    type: 'admin' | 'user';
 }
 
 export interface BreadcrumbItem {
@@ -29,6 +30,7 @@ export interface SharedData {
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
     [key: string]: unknown;
+    flash: Flash;
 }
 
 export interface User {
@@ -40,4 +42,12 @@ export interface User {
     created_at: string;
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
+    kana: string;
+    version: number;
+}
+
+interface Flash {
+    id: string | null;
+    message: string | null;
+    status: 'success' | 'info' | 'warning' | 'error' | null;
 }

@@ -261,6 +261,8 @@ return [
         'updated_at' => '更新日',
         'username' => 'ユーザー名',
         'year' => '年',
+        // 追加
+        'kana'=> 'カナ',
     ],
 
 ];
