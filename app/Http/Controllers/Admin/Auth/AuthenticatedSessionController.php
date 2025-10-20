@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Str;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -33,7 +34,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('admin.dashboard', absolute: false));
+        return redirect()->intended(route('admin.dashboard', absolute: false))->with([
+            'flash_id' => Str::uuid(),
+            'flash_message' => 'ログインしました',
+            'flash_status' => 'success',
+        ]);
     }
 
     /**
@@ -46,6 +51,10 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect(route('admin.login'));
+        return redirect(route('admin.login'))->with([
+            'flash_id' => Str::uuid(),
+            'flash_message' => 'ログアウトしました',
+            'flash_status' => 'success',
+        ]);
     }
 }
