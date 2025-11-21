@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -33,7 +34,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('admin.dashboard', absolute: false));
+        return redirect()->intended(route('admin.dashboard', absolute: false))->with([
+            'flash_id' => Str::uuid(),
+            'flash_message' => 'ログインしました',
+            'flash_status' => 'success',
+        ]);
     }
 
     /**
@@ -46,6 +51,10 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        return redirect('/admin/login')->with([
+            'flash_id' => Str::uuid(),
+            'flash_message' => 'ログアウトしました',
+            'flash_status' => 'success',
+        ]);
     }
 }

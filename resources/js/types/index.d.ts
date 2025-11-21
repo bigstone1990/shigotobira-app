@@ -29,6 +29,7 @@ export interface SharedData {
     auth: Auth;
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
+    flash: Flash;
     [key: string]: unknown;
 }
 
@@ -46,3 +47,9 @@ export interface User {
 }
 
 export type UserType = 'admin' | 'user';
+
+export interface Flash {
+    id: string | null;
+    message: string | null;
+    status: 'success' | 'info' | 'warning' | 'error' | null;
+}
