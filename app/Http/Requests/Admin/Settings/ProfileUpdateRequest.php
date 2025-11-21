@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Settings;
+namespace App\Http\Requests\Admin\Settings;
 
-use App\Models\User;
+use App\Models\Admin as User;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -17,8 +17,6 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-
             'email' => [
                 'required',
                 'string',
